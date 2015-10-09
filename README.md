@@ -2,7 +2,7 @@
 
 [![Join the chat at https://gitter.im/deviantony/fig-elk](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/deviantony/fig-elk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Run the ELK (Elasticseach, Logstash, Kibana) stack with Docker and Docker-compose.
+Run the ELK (Elasticseach, Logstash, Kibana) stack with Nginx basic auth on Docker and using Docker-compose.
 
 It will give you the ability to quickly test your logstash filters and check how the data can be processed in Kibana.
 
