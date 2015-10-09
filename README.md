@@ -32,7 +32,9 @@ For example on Redhat and CentOS, the following will apply the proper context:
 
 # Usage
 
-Start the ELK stack using *docker-compose*:
+Before you start the server, generate a htpasswd file locally or generate one [here](http://www.htaccesstools.com/htpasswd-generator/), save it as `htpasswd` and place it in `nginx/htpasswd/`
+
+Start the ELK stack using *docker-compose*:  
 
 ```bash
 $ docker-compose up
@@ -50,12 +52,13 @@ Now that the stack is running, you'll want to inject logs in it. The shipped log
 $ nc localhost 5000 < /path/to/logfile.log
 ```
 
-And then access Kibana UI by hitting [http://localhost:5601](http://localhost:5601) with a web browser.
+And then access Kibana UI by hitting [http://localhost](http://localhost) with a web browser. It will ask for the username and password. Use the one that you used to generate the htpasswd file
 
 By default, the stack exposes the following ports:
 * 5000: Logstash TCP input.
 * 9200: Elasticsearch HTTP (with Marvel plugin accessible via [http://localhost:9200/_plugin/marvel](http://localhost:9200/_plugin/marvel))
 * 5601: Kibana 4 web interface
+* 80  : Nginx
 
 *WARNING*: If you're using *boot2docker*, you must access it via the *boot2docker* IP address instead of *localhost*.
 
@@ -97,7 +100,7 @@ elasticsearch:
 
 ## How can I store Elasticsearch data?
 
-In order to persist Elasticsearch data, you'll have to mount a volume on your Docker host. Update the elasticsearch container declaration to:
+In order to persist Elasticsearch data, you'll have to mount a volume on your Docker host. By default, it is being stored in the same directory under `data/`. Update the elasticsearch container declaration to:
 
 ```yml
 elasticsearch:

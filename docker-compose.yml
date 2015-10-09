@@ -19,3 +19,13 @@ kibana:
     - "5601:5601"
   links:
     - elasticsearch
+nginx:
+  image: nginx
+  ports:
+    - "80:80"
+  volumes:
+    - ./nginx/conf.d/:/etc/nginx/conf.d
+    - ./nginx/htpasswd/htpasswd:/etc/nginx/htpasswd
+    - ..:/srv
+  links:
+    - kibana
